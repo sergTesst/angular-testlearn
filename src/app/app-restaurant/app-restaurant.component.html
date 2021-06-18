@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+
+<div class="row">
+	<div *ngIf="dishes" class="row">
+
+		<div *ngFor="let dish of dishes" class="m-3">
+				<span class="m-3">{{dish.name}}</span>
+				<span class="m-3">{{dish.prise|currency}}</span>
+				<span class="m-3">{{dish.time}} minutes</span>
+				<button (click)="editDish(dish.id)" class="btn btn-warning">Edit</button>
+				<button (click)="deleteDish(dish.id)" class="btn btn-danger">Delete</button>
+		</div>
+	
+	</div>
+	<div>
+		<button (click)="setShowAddInputs()" class="btn bg-success">Add dish</button>
+	</div>
+
+	<div *ngIf="showAddInputs" class="col-sm-4">
+		<label for="dishName">Name</label>
+		<input class="form-control m-2" name="dishName" [(ngModel)]="selectedDish.name" type="text" >
+		<label for="dishPrise">Prise</label>
+		<input class="form-control m-2" name="dishPrise" [(ngModel)]="selectedDish.prise" type="number" >
+		<label for="dishTime">Time</label>
+		<input class="form-control m-2" name="dishTime" [(ngModel)]="selectedDish.time" type="number" >
+
+		<button class="btn btn-primary" (click)="save()">Save</button>
+	</div>
+</div>
+
